@@ -6,22 +6,24 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+//URIStorage for storing metadata, Enumerable for enumerating through indexes and ids, Royalty for setting royalty fees, Ownable to allow minting only to owner
 contract SuperOwl is ERC721URIStorage, ERC721Enumerable, ERC721Royalty, Ownable {
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-    address payable royaltiesAddress;
 
     constructor() ERC721("SuperOwl", "SuperOwl") {
+    // set royalty at 10% for all minted NFTs, expressed in basis points
         _setDefaultRoyalty(msg.sender, 1000);
     }
-
+    // Mint NFT:
     function awardItem(address player, string memory tokenURIlink) public onlyOwner returns (uint256)                
     {
         _tokenIds.increment();
 
         uint256 newItemId = _tokenIds.current();
         _mint(player, newItemId);
+        // Set metadata:
         _setTokenURI(newItemId, tokenURIlink);
 
         return newItemId;
