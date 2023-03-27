@@ -18,12 +18,12 @@ async function main() {
     const TargetContractWithSigner = targetContract.connect(deployer);  // Connect contract factory to deployer
     
     const addressToCheck= '[ADDRESS OF NFT OWNER]'; // Address to check ownership for
-    const tokenIds = await TargetContractWithSigner.balanceOf(addressToCheck); // get number of NFTs of a contract address
+    const tokenIds = await TargetContractWithSigner.balanceOf(addressToCheck); // get number of NFTs that addressToCheck has
     let tokID,metadataResponse,metadata;
-    // loop through all NFTs of targetContract and retrieve metadata
+    // loop through all NFTs in addressToCheck and retrieve metadata
     for (let i = 1; i <= tokenIds.toNumber(); i++)
     {
-      tokID=await TargetContractWithSigner.tokenURI(i); // get tokenURIK link
+      tokID=await TargetContractWithSigner.tokenURI(i); // get tokenURI link
       metadataResponse = await fetch(tokID);
       metadata = await metadataResponse.json(); // get metadata
       console.log(metadata);
