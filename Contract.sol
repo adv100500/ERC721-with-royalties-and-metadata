@@ -6,13 +6,13 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Royalty.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract AngryOwl is ERC721URIStorage, ERC721Enumerable, ERC721Royalty, Ownable {
+contract SuperOwl is ERC721URIStorage, ERC721Enumerable, ERC721Royalty, Ownable {
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     address payable royaltiesAddress;
 
-    constructor() ERC721("AngryOwl", "AngryOwl") {
+    constructor() ERC721("SuperOwl", "SuperOwl") {
         _setDefaultRoyalty(msg.sender, 1000);
     }
 
